@@ -1,3 +1,5 @@
+import "./styles/main.scss";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages";
 
