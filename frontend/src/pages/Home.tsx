@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts";
 
 export const HomePage: React.FC = () => {
-  return <MainLayout></MainLayout>;
+  return <MainLayout>here is content</MainLayout>;
 };

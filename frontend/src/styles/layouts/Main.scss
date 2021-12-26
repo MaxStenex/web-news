@@ -1,6 +1,19 @@
 #main-layout {
   width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+  }
+
   .header {
     background-color: inherit;
     padding: 30px 20px;
@@ -53,6 +66,28 @@
     }
 
     &__auth {
+    }
+  }
+
+  .main {
+    flex: 1;
+  }
+
+  .footer {
+    width: 100%;
+    padding: 30px;
+    background-color: #000;
+
+    &__text {
+      color: #797979;
+      text-align: center;
+      margin: 0 auto;
+      & a {
+        color: $secondaryColor;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
