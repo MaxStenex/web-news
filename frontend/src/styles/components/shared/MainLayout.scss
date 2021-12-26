@@ -1,4 +1,4 @@
-#main-layout {
+.main-layout {
   width: 100%;
   min-height: 100vh;
   background-color: #fff;
@@ -6,7 +6,7 @@
   flex-direction: column;
   overflow-x: hidden;
 
-  .wrapper {
+  &__wrapper {
     display: flex;
     flex-direction: column;
     flex: 1;

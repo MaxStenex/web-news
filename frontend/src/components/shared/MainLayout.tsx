@@ -18,8 +18,8 @@ const headerLinks: Array<HeaderLinkType> = [
 
 export const MainLayout: React.FC = ({ children }) => {
   return (
-    <div id="main-layout">
-      <div className="wrapper">
+    <div className="main-layout">
+      <div className="main-layout__wrapper">
         <header className="header">
           <div className="header__wrapper">
             <Link to="/" className="header__logo">
