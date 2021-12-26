@@ -1,6 +1,5 @@
 #main-layout {
   width: 100%;
-  min-width: 100vw;
   min-height: 100vh;
   background-color: #fff;
   display: flex;
@@ -66,11 +65,20 @@
     }
 
     &__auth {
+      & a {
+        &.active {
+          color: $secondaryColor;
+        }
+      }
     }
   }
 
   .main {
     flex: 1;
+    width: 100%;
+    max-width: 1140px;
+    padding: 0px 20px;
+    align-self: center;
   }
 
   .footer {

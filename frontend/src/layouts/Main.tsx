@@ -1,5 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 
+type HeaderLinkType = {
+  text: string;
+  path: string;
+};
+
+const headerLinks: Array<HeaderLinkType> = [
+  {
+    text: "Home",
+    path: "/",
+  },
+  {
+    text: "News",
+    path: "/",
+  },
+];
+
 export const MainLayout: React.FC = ({ children }) => {
   return (
     <div id="main-layout">
@@ -11,30 +27,38 @@ export const MainLayout: React.FC = ({ children }) => {
             </Link>
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item">
-                  <NavLink
-                    to="/"
-                    className={({ isActive }) => (isActive ? "active" : "")}
-                  >
-                    Home
-                  </NavLink>
-                </li>
-                <li className="header__nav-item">
-                  <NavLink
-                    to="/"
-                    className={({ isActive }) => (isActive ? "active" : "")}
-                  >
-                    Authors
-                  </NavLink>
-                </li>
+                {headerLinks.map((l, i) => (
+                  <li key={i} className="header__nav-item">
+                    <NavLink
+                      to={l.path}
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      {l.text}
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
             </nav>
             <div className="header__auth">
-              <Link to="/">Login</Link> / <Link to="/">Register</Link>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Login
+              </NavLink>{" "}
+              /{" "}
+              <NavLink
+                to="/registration"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Register
+              </NavLink>
             </div>
           </div>
         </header>
-        <main className="main">{children}</main>
+        <main className="main">
+          <div className="main__wrapper">{children}</div>
+        </main>
         <footer className="footer">
           <div className="footer__text">
             Web news project | Made by{" "}
