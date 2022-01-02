@@ -1,4 +1,5 @@
-import { MainLayout, PageTop } from "../components/shared";
+import { MainLayout } from "../components/layouts";
+import { PageTop } from "../components/shared";
 
 export const HomePage: React.FC = () => {
   return (
