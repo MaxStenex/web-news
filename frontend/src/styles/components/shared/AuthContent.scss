@@ -1,0 +1,45 @@
+.auth-content {
+  margin: 50px 0px;
+  padding: 0px 20px;
+  &__title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  &__main {
+    max-width: 550px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1.9px solid $secondaryColor;
+    padding: 45px 30px 20px 30px;
+
+    & form {
+      display: flex;
+      flex-direction: column;
+
+      & button {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  &__footer {
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  &__footer-text {
+    font-size: 18px;
+    & a {
+      text-decoration: underline;
+      cursor: pointer;
+      color: $secondaryColor;
+      font-weight: 600;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.input-field {
+  display: flex;
+  flex-direction: column;
+  &__title {
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  &__error {
+    font-size: 14px;
+    color: red;
+    margin-top: 3px;
+  }
+}
