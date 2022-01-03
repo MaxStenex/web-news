@@ -4,7 +4,7 @@ import cn from "classnames";
 
 type Props = {
   title: string;
-  error: string;
+  error?: string;
   wrapperClassName?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
