@@ -1,34 +1,37 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { validate } from "class-validator";
 import { Repository } from "typeorm";
-import { CreateUserDto } from "./dto/create-user.dto";
 import { User } from "./user.entity";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
   ) {}
 
-  async create(userDto: CreateUserDto): Promise<User | HttpException> {
+  async findUserByField({
+    field,
+    value,
+    withPassword = false,
+  }: {
+    field: keyof User;
+    value: string | number;
+    withPassword?: boolean;
+  }): Promise<User | null> {
     try {
-      const user = this.usersRepository.create(userDto);
-      const errors = await validate(user);
+      const user = await this.userRepository.findOne({
+        where: { [field]: value },
+      });
 
-      if (errors.length > 0) {
-        return new HttpException("Validation failed", HttpStatus.BAD_REQUEST);
+      if (!withPassword) {
+        delete user.password;
       }
 
-      const savedUser = await this.usersRepository.save(user);
-      delete savedUser.password;
-
-      return savedUser;
+      return user;
     } catch (error) {
-      if (error.code === "ER_DUP_ENTRY") {
-        return new HttpException("Email already exists", HttpStatus.CONFLICT);
-      }
+      console.log(error);
+      return null;
     }
   }
 }

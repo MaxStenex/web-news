@@ -17,6 +17,6 @@ export class User {
 
   @MinLength(6)
   @MaxLength(255)
-  @Column({ select: false })
+  @Column()
   password: string;
 }
