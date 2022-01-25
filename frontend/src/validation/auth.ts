@@ -18,3 +18,8 @@ export const registerSchema = Yup.object().shape({
     }
   ),
 });
+
+export const loginSchema = Yup.object().shape({
+  email: Yup.string().required("Field is required"),
+  password: Yup.string().required("Field is required"),
+});

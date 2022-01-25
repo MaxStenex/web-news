@@ -1,5 +1,7 @@
-import { Formik, Form } from "formik";
-import React from "react";
+import { Form, Formik } from "formik";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "../../mutations/auth";
 import { IRegisterFormData } from "../../types/api/auth";
 import { registerSchema } from "../../validation/auth";
 import { InputField } from "../shared";
@@ -16,11 +18,38 @@ const formInitialValues: IFormValues = {
 };
 
 export const RegisterForm: React.FC = () => {
+  const navigate = useNavigate();
+
+  const [isSumbited, setIsSubmited] = useState(false);
+
+  const { mutateAsync, isLoading } = useRegisterMutation();
+
   return (
     <Formik
       initialValues={formInitialValues}
-      onSubmit={(values: IFormValues) => {
-        console.log(values);
+      validateOnBlur={false}
+      validateOnChange={isSumbited}
+      onSubmit={async (values: IFormValues, { setErrors }) => {
+        try {
+          const { data } = await mutateAsync(values);
+
+          const errorMessage = data.message;
+
+          if (errorMessage?.includes("email")) {
+            return setErrors({ email: errorMessage });
+          }
+
+          if (errorMessage) {
+            throw new Error(errorMessage);
+          }
+
+          console.log(data);
+          navigate("/");
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setIsSubmited(true);
+        }
       }}
       validationSchema={registerSchema}
     >
@@ -57,7 +86,7 @@ export const RegisterForm: React.FC = () => {
             error={errors.confirmPassword}
             type="password"
           />
-          <button className="primary-btn" type="submit">
+          <button disabled={isLoading} className="primary-btn" type="submit">
             Sign up
           </button>
         </Form>
