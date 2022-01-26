@@ -13,6 +13,7 @@ import { validate } from "class-validator";
 import { LoginUserDto } from "./dto/login-user.dto";
 import { UserService } from "src/user/user.service";
 import { JwtService } from "@nestjs/jwt";
+import { JwtPayloadDto } from "./dto/jwt-payload.dto";
 
 @Injectable()
 export class AuthService {
@@ -72,7 +73,7 @@ export class AuthService {
 
       delete user.password;
 
-      const jwtPayload = { email, sub: user.id };
+      const jwtPayload: JwtPayloadDto = { email, sub: user.id };
 
       return { ...user, access_token: this.jwtService.sign(jwtPayload) };
     } catch (error) {
