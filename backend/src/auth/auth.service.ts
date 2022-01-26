@@ -12,6 +12,7 @@ import * as bcrypt from "bcrypt";
 import { validate } from "class-validator";
 import { LoginUserDto } from "./dto/login-user.dto";
 import { UserService } from "src/user/user.service";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class AuthService {
@@ -19,6 +20,7 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private userService: UserService,
+    private jwtService: JwtService,
   ) {}
 
   async register(
@@ -45,7 +47,9 @@ export class AuthService {
     }
   }
 
-  async login(loginDto: LoginUserDto): Promise<User | HttpException> {
+  async login(
+    loginDto: LoginUserDto,
+  ): Promise<(User & { access_token: string }) | HttpException> {
     try {
       const { email, password } = loginDto;
 
@@ -68,7 +72,9 @@ export class AuthService {
 
       delete user.password;
 
-      return user;
+      const jwtPayload = { email, sub: user.id };
+
+      return { ...user, access_token: this.jwtService.sign(jwtPayload) };
     } catch (error) {
       return new UnauthorizedException();
     }
