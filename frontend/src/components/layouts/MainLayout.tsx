@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import { useMeQuery } from "../../queries/auth";
 
 type HeaderLinkType = {
   text: string;
@@ -17,6 +18,10 @@ const headerLinks: Array<HeaderLinkType> = [
 ];
 
 export const MainLayout: React.FC = ({ children }) => {
+  const { data } = useMeQuery();
+
+  const username = data?.data.username;
+
   return (
     <div className="main-layout">
       <div className="main-layout__wrapper">
@@ -40,19 +45,25 @@ export const MainLayout: React.FC = ({ children }) => {
               </ul>
             </nav>
             <div className="header__auth">
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Login
-              </NavLink>{" "}
-              /{" "}
-              <NavLink
-                to="/registration"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Register
-              </NavLink>
+              {username ? (
+                <span>{username}</span>
+              ) : (
+                <>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    Login
+                  </NavLink>{" "}
+                  /{" "}
+                  <NavLink
+                    to="/registration"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    Register
+                  </NavLink>
+                </>
+              )}
             </div>
           </div>
         </header>

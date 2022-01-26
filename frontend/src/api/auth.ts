@@ -19,3 +19,7 @@ export const loginUser = ({ email, password }: ILoginFormData) => {
 
   return instance.post("/auth/login", formData);
 };
+
+export const authMe = () => {
+  return instance.get("/auth/me");
+};
