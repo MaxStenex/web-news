@@ -21,5 +21,5 @@ export const loginUser = ({ email, password }: ILoginFormData) => {
 };
 
 export const authMe = () => {
-  return instance.get("/auth/me");
+  return instance.get("/auth/me").catch(() => {});
 };

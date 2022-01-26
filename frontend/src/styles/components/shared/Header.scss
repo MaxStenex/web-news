@@ -1,0 +1,67 @@
+.header {
+  background-color: inherit;
+  padding: 30px 20px;
+
+  & a:not(.header__logo) {
+    transition: $defaultTransition;
+    color: $primaryColor;
+    font-size: 20px;
+    transition: $defaultTransition;
+    &:hover {
+      color: $secondaryColor;
+    }
+  }
+
+  &__loader {
+    height: 25px;
+    margin: 0 auto;
+  }
+
+  &__wrapper {
+    max-width: $contentWidth;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    font-size: 46px;
+    display: block;
+    color: #3f4652;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__nav {
+  }
+
+  &__nav-list {
+    display: flex;
+  }
+
+  &__nav-item {
+    margin-right: 45px;
+    &:last-child {
+      margin-right: 0;
+    }
+
+    & a {
+      font-weight: 600;
+      &.active {
+        color: $secondaryColor;
+      }
+    }
+  }
+
+  &__auth {
+    flex: 0 1 127px;
+    display: flex;
+    justify-content: flex-end;
+    & a {
+      &.active {
+        color: $secondaryColor;
+      }
+    }
+  }
+}
