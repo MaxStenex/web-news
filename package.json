@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "concurrently \"cd backend/ && yarn start:dev\" \"cd frontend/ && yarn start\"",
+    "install:all": "concurrently \"cd backend/ && yarn\" \"cd frontend/ && yarn\""
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
