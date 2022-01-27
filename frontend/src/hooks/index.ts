@@ -1,0 +1,1 @@
+export { useOnOtsideClick } from "./useOnOtsideClick";

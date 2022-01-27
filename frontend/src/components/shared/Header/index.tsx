@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Loader } from ".";
-import { useMeQuery } from "../../queries/auth";
+import { UserAuthContent } from "./UserAuthContent";
 
 interface INavLink {
   text: string;
@@ -20,33 +19,6 @@ const headerLinks: Array<INavLink> = [
 ];
 
 export const Header: React.FC = () => {
-  const { data, isLoading } = useMeQuery();
-
-  const username = data?.data.username;
-
-  let authSectionContent = (
-    <>
-      <NavLink to="/login" className={({ isActive }) => (isActive ? "active" : "")}>
-        Login
-      </NavLink>{" "}
-      /{" "}
-      <NavLink
-        to="/registration"
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        Register
-      </NavLink>
-    </>
-  );
-
-  if (isLoading) {
-    authSectionContent = <Loader className="header__loader" />;
-  }
-
-  if (username) {
-    authSectionContent = <span>{username}</span>;
-  }
-
   return (
     <header className="header">
       <div className="header__wrapper">
@@ -67,7 +39,7 @@ export const Header: React.FC = () => {
             ))}
           </ul>
         </nav>
-        <div className="header__auth">{authSectionContent}</div>
+        <UserAuthContent />
       </div>
     </header>
   );

@@ -58,10 +58,38 @@
     flex: 0 1 127px;
     display: flex;
     justify-content: flex-end;
+    position: relative;
+
+    & span {
+      margin: 0 3px;
+    }
+
     & a {
       &.active {
         color: $secondaryColor;
       }
+    }
+  }
+
+  &__username {
+    font-size: 17px;
+    cursor: pointer;
+  }
+}
+
+.header-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  width: 150px;
+
+  &__btn {
+    width: 100%;
+    font-weight: 700;
+    font-size: 14px !important;
+    border-radius: 0 !important;
+
+    &:first-child {
+      margin: -1px 0;
     }
   }
 }
