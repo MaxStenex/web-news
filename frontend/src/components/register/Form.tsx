@@ -1,6 +1,7 @@
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { queryClient } from "../../App";
 import { useRegisterMutation } from "../../mutations/auth";
 import { IRegisterFormData } from "../../types/api/auth";
 import { registerSchema } from "../../validation/auth";
@@ -43,7 +44,7 @@ export const RegisterForm: React.FC = () => {
             throw new Error(errorMessage);
           }
 
-          console.log(data);
+          queryClient.invalidateQueries("me");
           navigate("/");
         } catch (error) {
           console.log(error);

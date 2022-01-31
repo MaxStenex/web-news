@@ -8,6 +8,10 @@ const getToken = (): string | null => {
   return localStorage.getItem("token");
 };
 
-const token = getToken();
+instance.interceptors.request.use((config) => {
+  if (config.headers) {
+    config.headers["Authorization"] = "Bearer " + getToken();
+  }
 
-instance.defaults.headers.common = { Authorization: token ? `Bearer ${token}` : "" };
+  return config;
+});

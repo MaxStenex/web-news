@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Loader } from "..";
+import { queryClient } from "../../../App";
 import { useOnOtsideClick } from "../../../hooks";
 import { useMeQuery } from "../../../queries/auth";
 
@@ -37,6 +38,11 @@ export const UserAuthContent: React.FC = () => {
   }
 
   if (username) {
+    const onLogoutClick = () => {
+      localStorage.removeItem("token");
+      queryClient.invalidateQueries("me");
+    };
+
     content = (
       <>
         <span onClick={() => setIsPopupOpened(true)} className="header__username">
@@ -44,7 +50,9 @@ export const UserAuthContent: React.FC = () => {
         </span>
         {isPopupOpened && (
           <div ref={popupRef} className="header-popup">
-            <button className="primary-btn header-popup__btn">Logout</button>
+            <button onClick={onLogoutClick} className="primary-btn header-popup__btn">
+              Logout
+            </button>
           </div>
         )}
       </>
