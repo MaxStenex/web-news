@@ -24,9 +24,15 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  generateAccessToken(user: User): string {
+    const jwtPayload: JwtPayloadDto = { email: user.email, sub: user.id };
+
+    return this.jwtService.sign(jwtPayload);
+  }
+
   async register(
     registerUserDto: RegisterUserDto,
-  ): Promise<User | HttpException> {
+  ): Promise<(User & { access_token: string }) | HttpException> {
     try {
       await validate(registerUserDto);
 
@@ -40,7 +46,7 @@ export class AuthService {
       const savedUser = await this.userRepository.save(user);
       delete savedUser.password;
 
-      return savedUser;
+      return { ...savedUser, access_token: this.generateAccessToken(user) };
     } catch (error) {
       if (error.code === "ER_DUP_ENTRY") {
         return new HttpException("Email already exists", HttpStatus.CONFLICT);
@@ -73,9 +79,7 @@ export class AuthService {
 
       delete user.password;
 
-      const jwtPayload: JwtPayloadDto = { email, sub: user.id };
-
-      return { ...user, access_token: this.jwtService.sign(jwtPayload) };
+      return { ...user, access_token: this.generateAccessToken(user) };
     } catch (error) {
       return new UnauthorizedException();
     }
