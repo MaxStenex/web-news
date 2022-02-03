@@ -1,7 +1,7 @@
 import "./styles/main.scss";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage, LoginPage, RegistrationPage } from "./pages";
+import { CreatePostPage, HomePage, LoginPage, RegistrationPage } from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 export const queryClient = new QueryClient({
@@ -18,6 +18,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/create-post" element={<CreatePostPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

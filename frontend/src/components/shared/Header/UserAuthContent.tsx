@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Loader } from "..";
 import { queryClient } from "../../../App";
 import { useOnOtsideClick } from "../../../hooks";
@@ -50,6 +50,9 @@ export const UserAuthContent: React.FC = () => {
         </span>
         {isPopupOpened && (
           <div ref={popupRef} className="header-popup">
+            <Link to="/create-post">
+              <button className="primary-btn header-popup__btn">Create post</button>
+            </Link>
             <button onClick={onLogoutClick} className="primary-btn header-popup__btn">
               Logout
             </button>

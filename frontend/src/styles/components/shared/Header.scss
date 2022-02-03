@@ -2,16 +2,6 @@
   background-color: inherit;
   padding: 30px 20px;
 
-  & a:not(.header__logo) {
-    transition: $defaultTransition;
-    color: $primaryColor;
-    font-size: 20px;
-    transition: $defaultTransition;
-    &:hover {
-      color: $secondaryColor;
-    }
-  }
-
   &__loader {
     height: 25px;
     margin: 0 auto;
@@ -34,6 +24,15 @@
   }
 
   &__nav {
+    & a {
+      transition: $defaultTransition;
+      color: $primaryColor;
+      font-size: 20px;
+      transition: $defaultTransition;
+      &:hover {
+        color: $secondaryColor;
+      }
+    }
   }
 
   &__nav-list {
@@ -83,9 +82,12 @@
   width: 150px;
 
   &__btn {
+    display: flex;
+    justify-content: center;
     width: 100%;
     font-weight: 700;
     font-size: 14px !important;
+
     border-radius: 0 !important;
 
     &:first-child {
