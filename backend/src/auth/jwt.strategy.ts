@@ -4,6 +4,11 @@ import { Injectable } from "@nestjs/common";
 import { jwtConstants } from "./constants";
 import { JwtPayloadDto } from "./dto/jwt-payload.dto";
 
+export type RequestUserInfoType = {
+  id: number;
+  email: string;
+};
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
@@ -14,7 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: JwtPayloadDto) {
+  async validate(payload: JwtPayloadDto): Promise<RequestUserInfoType> {
     return { id: payload.sub, email: payload.email };
   }
 }

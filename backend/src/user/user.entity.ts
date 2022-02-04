@@ -1,5 +1,6 @@
 import { IsEmail, MaxLength, MinLength } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Post } from "src/post/post.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("users")
 export class User {
@@ -19,4 +20,7 @@ export class User {
   @MaxLength(255)
   @Column()
   password: string;
+
+  @OneToMany(() => Post, (post) => post.creator)
+  posts: Post[];
 }
