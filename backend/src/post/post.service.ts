@@ -4,7 +4,7 @@ import { validate } from "class-validator";
 import { UserService } from "src/user/user.service";
 import { Repository } from "typeorm";
 import { CreatePostDto } from "./dto/create-post.dto";
-import { Post } from "./post.entity";
+import { Post, PostCategory } from "./post.entity";
 
 @Injectable()
 export class PostService {
@@ -34,6 +34,14 @@ export class PostService {
       await this.postRepository.save(post);
 
       return post;
+    } catch (error) {
+      return new HttpException("Something goes wrong", 500);
+    }
+  }
+
+  async findAllCategories() {
+    try {
+      return Object.values(PostCategory);
     } catch (error) {
       return new HttpException("Something goes wrong", 500);
     }
