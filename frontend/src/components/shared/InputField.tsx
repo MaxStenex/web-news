@@ -18,7 +18,7 @@ export const InputField: React.FC<Props> = ({
     <label className={cn("input-field", wrapperClassName)}>
       <span className="input-field__title">{title}</span>
       <Field className="default-input" type="text" {...inputProps} />
-      <span className="input-field__error">{error}</span>
+      {error && <span className="error-text input-field__error">{error}</span>}
     </label>
   );
 };

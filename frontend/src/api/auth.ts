@@ -6,8 +6,9 @@ export interface IRegisterFormData {
   password: string;
 }
 
-export const registerUser = (formData: IRegisterFormData) => {
-  return instance.post("/auth/register", formData);
+export const registerUser = async (formData: IRegisterFormData) => {
+  const res = await instance.post("/auth/register", formData);
+  return res.data;
 };
 
 export interface ILoginFormData {
@@ -15,10 +16,14 @@ export interface ILoginFormData {
   password: string;
 }
 
-export const loginUser = (formData: ILoginFormData) => {
-  return instance.post("/auth/login", formData);
+export const loginUser = async (formData: ILoginFormData) => {
+  const res = await instance.post("/auth/login", formData);
+  return res.data;
 };
 
-export const authMe = () => {
-  return instance.get("/auth/me").catch(() => {});
+export const authMe = async () => {
+  try {
+    const res = await instance.get("/auth/me");
+    return res.data;
+  } catch (error) {}
 };

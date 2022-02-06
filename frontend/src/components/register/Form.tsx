@@ -33,9 +33,9 @@ export const RegisterForm: React.FC = () => {
       validate={() => setIsValidated(true)}
       onSubmit={async (values: IFormValues, { setErrors }) => {
         try {
-          const { data } = await mutateAsync(values);
+          const data = await mutateAsync(values);
 
-          const errorMessage = data.message;
+          const errorMessage = data.message?.toLowerCase();
 
           if (errorMessage?.includes("email")) {
             return setErrors({ email: errorMessage });

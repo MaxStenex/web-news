@@ -16,7 +16,7 @@ export const UserAuthContent: React.FC = () => {
     }
   });
 
-  const username = data?.data.username;
+  const username = data?.username;
 
   let content = (
     <>

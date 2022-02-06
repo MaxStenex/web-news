@@ -24,7 +24,7 @@ export const LoginForm: React.FC = () => {
       validateOnChange={false}
       onSubmit={async (values: ILoginFormData) => {
         try {
-          const { data } = await mutateAsync(values);
+          const data = await mutateAsync(values);
 
           if (data.status === 401) {
             throw new Error("");

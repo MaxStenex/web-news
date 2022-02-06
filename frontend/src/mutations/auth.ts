@@ -1,10 +1,7 @@
-import { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 import { loginUser, registerUser } from "../api/auth";
 
-const afterAuthSuccess = async (resp: AxiosResponse) => {
-  const { data } = resp;
-
+const afterAuthSuccess = async (data: any) => {
   const token = data?.access_token;
 
   if (!token) {
@@ -16,14 +13,14 @@ const afterAuthSuccess = async (resp: AxiosResponse) => {
 
 export const useRegisterMutation = () =>
   useMutation(registerUser, {
-    onSuccess: (resp) => {
-      afterAuthSuccess(resp);
+    onSuccess: (data) => {
+      afterAuthSuccess(data);
     },
   });
 
 export const useLoginMutation = () =>
   useMutation(loginUser, {
-    onSuccess: (resp) => {
-      afterAuthSuccess(resp);
+    onSuccess: (data) => {
+      afterAuthSuccess(data);
     },
   });
