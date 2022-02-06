@@ -1,9 +1,9 @@
 import { Formik, Form } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ILoginFormData } from "../../api/auth";
 import { queryClient } from "../../App";
 import { useLoginMutation } from "../../mutations/auth";
-import { ILoginFormData } from "../../types/api/auth";
 import { loginSchema } from "../../validation/auth";
 import { InputField } from "../shared";
 
@@ -46,6 +46,7 @@ export const LoginForm: React.FC = () => {
             name="email"
             placeholder="Enter your email..."
             error={errors.email}
+            type="email"
           />
           <InputField
             wrapperClassName="mb-15"

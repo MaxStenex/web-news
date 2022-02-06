@@ -1,22 +1,21 @@
-import { ILoginFormData, IRegisterFormData } from "../types/api/auth";
 import { instance } from "./";
 
-export const registerUser = ({ username, email, password }: IRegisterFormData) => {
-  const formData = {
-    username,
-    email,
-    password,
-  };
+export interface IRegisterFormData {
+  username: string;
+  email: string;
+  password: string;
+}
 
+export const registerUser = (formData: IRegisterFormData) => {
   return instance.post("/auth/register", formData);
 };
 
-export const loginUser = ({ email, password }: ILoginFormData) => {
-  const formData = {
-    email,
-    password,
-  };
+export interface ILoginFormData {
+  email: string;
+  password: string;
+}
 
+export const loginUser = (formData: ILoginFormData) => {
   return instance.post("/auth/login", formData);
 };
 

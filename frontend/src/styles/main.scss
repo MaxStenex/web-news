@@ -18,10 +18,14 @@ body {
 
 .default-btn {
   padding: 10px 15px;
-  border-radius: 7px;
+  border-radius: 5px;
   font-size: 17px;
   font-weight: 600;
   transition: $defaultTransition;
+
+  &:disabled {
+    cursor: initial;
+  }
 }
 
 .primary-btn {
@@ -31,8 +35,20 @@ body {
   background-color: $primaryColor;
   color: $secondaryColor;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: #fff;
     color: $primaryColor;
   }
+
+  &:disabled {
+    background-color: lighten($primaryColor, 10);
+    color: lighten($secondaryColor, 15);
+  }
+}
+
+.error-text {
+  font-size: 14px;
+  color: red;
+  margin-top: 5px;
+  margin-left: 5px;
 }

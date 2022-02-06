@@ -32,6 +32,7 @@
     }
   }
 }
+
 .create-post-form {
   &__block {
     display: flex;
@@ -52,7 +53,7 @@
   &__block-input-wrapper {
     border: 1px solid grey;
     border-top: none;
-    min-height: 100px;
+
     display: flex;
     flex-direction: column;
 
@@ -63,20 +64,23 @@
       width: 100%;
       resize: none;
       font-size: 14px;
+      background-color: transparent;
 
       &:focus {
         border: none;
         outline: none;
       }
     }
-
-    &--text {
-      min-height: 150px;
-    }
   }
 
   &__textarea {
+    min-height: 130px;
     &--text {
+      min-height: 200px;
     }
+  }
+
+  &__select {
+    cursor: pointer;
   }
 }

@@ -1,9 +1,9 @@
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IRegisterFormData } from "../../api/auth";
 import { queryClient } from "../../App";
 import { useRegisterMutation } from "../../mutations/auth";
-import { IRegisterFormData } from "../../types/api/auth";
 import { registerSchema } from "../../validation/auth";
 import { InputField } from "../shared";
 
@@ -21,7 +21,7 @@ const formInitialValues: IFormValues = {
 export const RegisterForm: React.FC = () => {
   const navigate = useNavigate();
 
-  const [isSumbited, setIsSubmited] = useState(false);
+  const [isValidated, setIsValidated] = useState(false);
 
   const { mutateAsync, isLoading } = useRegisterMutation();
 
@@ -29,7 +29,8 @@ export const RegisterForm: React.FC = () => {
     <Formik
       initialValues={formInitialValues}
       validateOnBlur={false}
-      validateOnChange={isSumbited}
+      validateOnChange={isValidated}
+      validate={() => setIsValidated(true)}
       onSubmit={async (values: IFormValues, { setErrors }) => {
         try {
           const { data } = await mutateAsync(values);
@@ -48,8 +49,6 @@ export const RegisterForm: React.FC = () => {
           navigate("/");
         } catch (error) {
           console.log(error);
-        } finally {
-          setIsSubmited(true);
         }
       }}
       validationSchema={registerSchema}
