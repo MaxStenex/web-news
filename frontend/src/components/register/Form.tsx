@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { IRegisterFormData } from "../../api/auth";
 import { queryClient } from "../../App";
 import { useRegisterMutation } from "../../mutations/auth";
+import { makeToast } from "../../utils";
 import { registerSchema } from "../../validation/auth";
 import { InputField } from "../shared";
 
@@ -45,7 +46,8 @@ export const RegisterForm: React.FC = () => {
             throw new Error(errorMessage);
           }
 
-          queryClient.invalidateQueries("me");
+          await queryClient.invalidateQueries("me");
+          makeToast({ message: "Successfully registered", type: "success" });
           navigate("/");
         } catch (error) {
           console.log(error);

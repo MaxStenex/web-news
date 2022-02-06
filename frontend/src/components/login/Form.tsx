@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ILoginFormData } from "../../api/auth";
 import { queryClient } from "../../App";
 import { useLoginMutation } from "../../mutations/auth";
+import { makeToast } from "../../utils";
 import { loginSchema } from "../../validation/auth";
 import { InputField } from "../shared";
 
@@ -30,7 +31,8 @@ export const LoginForm: React.FC = () => {
             throw new Error("");
           }
 
-          queryClient.invalidateQueries("me");
+          await queryClient.invalidateQueries("me");
+          makeToast({ message: "Successfully logged in", type: "success" });
           navigate("/");
         } catch (error) {
           console.log(error);

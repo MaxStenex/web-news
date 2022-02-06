@@ -4,6 +4,7 @@ import { Loader } from "..";
 import { queryClient } from "../../../App";
 import { useOnOtsideClick } from "../../../hooks";
 import { useMeQuery } from "../../../queries/auth";
+import { makeToast } from "../../../utils";
 
 export const UserAuthContent: React.FC = () => {
   const { data, isLoading } = useMeQuery();
@@ -38,9 +39,13 @@ export const UserAuthContent: React.FC = () => {
   }
 
   if (username) {
-    const onLogoutClick = () => {
-      localStorage.removeItem("token");
-      queryClient.invalidateQueries("me");
+    const onLogoutClick = async () => {
+      try {
+        localStorage.removeItem("token");
+        await queryClient.invalidateQueries("me");
+
+        makeToast({ message: "Logout successfully", type: "success" });
+      } catch (error) {}
     };
 
     content = (

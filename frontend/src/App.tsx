@@ -5,6 +5,8 @@ import { CreatePostPage, HomePage, LoginPage, RegistrationPage } from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { PrivateRoute } from "./router";
 
+import { Toaster } from "react-hot-toast";
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false },
@@ -24,6 +26,7 @@ const App = () => {
             element={<PrivateRoute component={<CreatePostPage />} />}
           />
         </Routes>
+        <Toaster />
       </BrowserRouter>
     </QueryClientProvider>
   );
