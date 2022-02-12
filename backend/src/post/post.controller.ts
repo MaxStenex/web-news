@@ -27,4 +27,9 @@ export class PostController {
   async findAllCategories() {
     return this.postService.findAllCategories();
   }
+
+  @Get("/latest")
+  async findLatestPosts() {
+    return this.postService.findLatest();
+  }
 }

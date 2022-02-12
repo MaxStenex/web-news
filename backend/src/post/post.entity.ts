@@ -1,6 +1,12 @@
 import { IsEnum, MaxLength, MinLength } from "class-validator";
 import { User } from "src/user/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from "typeorm";
 
 export enum PostCategory {
   JavaScript = "javascript",
@@ -9,7 +15,7 @@ export enum PostCategory {
   Software = "software",
 }
 
-@Entity("post")
+@Entity("posts")
 export class Post {
   @PrimaryGeneratedColumn()
   id: number;
@@ -31,6 +37,9 @@ export class Post {
     nullable: false,
   })
   category: PostCategory;
+
+  @CreateDateColumn({ type: "timestamp" })
+  createdAt: string;
 
   @ManyToOne(() => User, (user) => user.posts)
   creator: User;
