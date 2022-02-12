@@ -15,3 +15,8 @@ export const createPost = async (formData: ICreatePostFormData) => {
   const res = await instance.post("/posts/create", formData);
   return res.data;
 };
+
+export const getLatestPosts = async () => {
+  const res = await instance.get("/posts/latest");
+  return res.data;
+};

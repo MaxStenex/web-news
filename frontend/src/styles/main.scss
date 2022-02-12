@@ -22,6 +22,7 @@ body {
   font-size: 17px;
   font-weight: 600;
   transition: $defaultTransition;
+  text-align: center;
 
   &:disabled {
     cursor: initial;
