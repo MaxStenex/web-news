@@ -62,4 +62,12 @@ export class PostService {
       return posts;
     } catch (error) {}
   }
+
+  async findAll() {
+    try {
+      const posts = await this.postRepository.find({ relations: ["creator"] });
+
+      return posts;
+    } catch (error) {}
+  }
 }

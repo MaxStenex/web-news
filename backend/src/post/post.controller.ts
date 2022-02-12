@@ -32,4 +32,9 @@ export class PostController {
   async findLatestPosts() {
     return this.postService.findLatest();
   }
+
+  @Get("/")
+  async findAllPosts() {
+    return this.postService.findAll();
+  }
 }
