@@ -37,7 +37,6 @@ export class AuthController {
     return this.userService.findUserByField({
       field: "id",
       value: userId,
-      withPassword: false,
     });
   }
 }

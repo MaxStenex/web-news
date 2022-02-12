@@ -60,11 +60,12 @@ export class AuthService {
     try {
       const { email, password } = loginDto;
 
-      const user = await this.userService.findUserByField({
-        field: "email",
-        value: email,
-        withPassword: true,
+      const user = await this.userRepository.findOne({
+        where: { email },
+        select: ["password", "email"],
       });
+
+      console.log(user);
 
       if (!user) {
         return new UnauthorizedException();

@@ -18,7 +18,7 @@ export class User {
 
   @MinLength(6)
   @MaxLength(255)
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @OneToMany(() => Post, (post) => post.creator)

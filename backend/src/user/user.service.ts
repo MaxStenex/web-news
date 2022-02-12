@@ -13,7 +13,6 @@ export class UserService {
   async findUserByField({
     field,
     value,
-    withPassword = false,
   }: {
     field: keyof User;
     value: string | number;
@@ -23,10 +22,6 @@ export class UserService {
       const user = await this.userRepository.findOne({
         where: { [field]: value },
       });
-
-      if (!withPassword) {
-        delete user.password;
-      }
 
       return user;
     } catch (error) {
