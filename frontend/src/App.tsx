@@ -1,7 +1,7 @@
 import "./styles/main.scss";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CreatePostPage, HomePage, LoginPage, RegistrationPage } from "./pages";
+import { CreatePostPage, HomePage, LoginPage, NewsPage, RegistrationPage } from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { PrivateRoute } from "./router";
 
@@ -25,6 +25,7 @@ const App = () => {
             path="/create-post"
             element={<PrivateRoute component={<CreatePostPage />} />}
           />
+          <Route path="/news" element={<NewsPage />} />
         </Routes>
         <Toaster />
       </BrowserRouter>

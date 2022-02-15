@@ -1,11 +1,10 @@
 import React from "react";
-import { Cards } from "./Cards";
 import { Sidebar } from "./Sidebar";
 
-export const CardsContent: React.FC = () => {
+export const CardsContent: React.FC = ({ children }) => {
   return (
     <div className="cards-content">
-      <Cards />
+      <div className="cards-content__cards">{children}</div>
       <Sidebar />
     </div>
   );

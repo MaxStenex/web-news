@@ -29,7 +29,6 @@ export const Card: React.FC<Props> = ({
         </div>
         <div className="post-card__header-item">
           <img src={calendarSvg} alt="" />
-          {/* <span>January 12,2019</span> */}
           <span>{dayjs(createdAt).format("MMMM DD, YYYY")}</span>
         </div>
       </div>
