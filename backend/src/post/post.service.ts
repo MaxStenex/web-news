@@ -63,11 +63,18 @@ export class PostService {
     } catch (error) {}
   }
 
-  async findAll() {
+  async find({ take, skip }: { take?: number; skip?: number }) {
     try {
-      const posts = await this.postRepository.find({ relations: ["creator"] });
+      const [posts, totalCount] = await this.postRepository.findAndCount({
+        relations: ["creator"],
+        order: {
+          createdAt: "DESC",
+        },
+        take: take,
+        skip: skip,
+      });
 
-      return posts;
+      return { posts, totalCount };
     } catch (error) {}
   }
 }

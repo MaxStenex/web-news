@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   Request,
   UseGuards,
 } from "@nestjs/common";
@@ -34,7 +35,10 @@ export class PostController {
   }
 
   @Get("/")
-  async findAllPosts() {
-    return this.postService.findAll();
+  async findPosts(@Query() query) {
+    const take = parseInt(query.take);
+    const skip = parseInt(query.skip);
+
+    return this.postService.find({ take, skip });
   }
 }
