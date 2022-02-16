@@ -29,11 +29,6 @@ export class PostController {
     return this.postService.findAllCategories();
   }
 
-  @Get("/latest")
-  async findLatestPosts() {
-    return this.postService.findLatest();
-  }
-
   @Get("/")
   async findPosts(@Query() query) {
     const take = parseInt(query.take);

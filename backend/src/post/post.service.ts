@@ -47,22 +47,6 @@ export class PostService {
     }
   }
 
-  async findLatest() {
-    try {
-      const postsCount = 5;
-
-      const posts = await this.postRepository.find({
-        order: {
-          createdAt: "DESC",
-        },
-        take: postsCount,
-        relations: ["creator"],
-      });
-
-      return posts;
-    } catch (error) {}
-  }
-
   async find({ take, skip }: { take?: number; skip?: number }) {
     try {
       const [posts, totalCount] = await this.postRepository.findAndCount({
