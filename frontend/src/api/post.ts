@@ -16,7 +16,22 @@ export const createPost = async (formData: ICreatePostFormData) => {
   return res.data;
 };
 
-export const getLatestPosts = async () => {
-  const res = await instance.get("/posts/latest");
+export interface IGetPosts {
+  take?: number;
+  skip?: number;
+}
+
+export const getPosts = async ({ take, skip }: IGetPosts) => {
+  let url = "/posts";
+
+  if (take) {
+    url += `?take=${take}`;
+  }
+
+  if (skip) {
+    url += `${take ? "&" : "?"}skip=${skip}`;
+  }
+
+  const res = await instance.get(url);
   return res.data;
 };

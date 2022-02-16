@@ -36,7 +36,7 @@ body {
   background-color: $primaryColor;
   color: $secondaryColor;
 
-  &:hover:not(:disabled) {
+  &:hover:not([disabled]) {
     background-color: #fff;
     color: $primaryColor;
   }

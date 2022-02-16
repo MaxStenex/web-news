@@ -10,6 +10,7 @@
     flex: 0 1 48%;
     margin-right: 20px;
     margin-bottom: 20px;
+    overflow: hidden;
 
     &:nth-child(2n) {
       margin-right: 0;
@@ -23,7 +24,7 @@
     & button {
       border-radius: 0;
       border: 1px solid $primaryColor;
-      &:hover {
+      &:hover:not([disabled]) {
         background-color: rgb(214, 214, 214);
       }
       &:not(:first-child) {

@@ -7,7 +7,7 @@ export const LatestCards: React.FC = () => {
 
   if (!data) return null;
 
-  return data?.map((c: any) => (
+  return data?.posts?.map((c: any) => (
     <Card
       id={c.id}
       key={c.id}
