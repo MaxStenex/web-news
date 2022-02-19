@@ -1,0 +1,26 @@
+.post-comment-form {
+  display: flex;
+  border: 1px solid rgb(216, 216, 216);
+  padding: 10px 7px;
+  align-items: center;
+  width: 500px;
+  border-radius: 7px;
+
+  &__input {
+    font-size: 17px;
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+
+    & a {
+      display: block;
+      margin-right: 7px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

@@ -5,9 +5,7 @@ export const MainLayout: React.FC = ({ children }) => {
     <div className="main-layout">
       <div className="main-layout__wrapper">
         <Header />
-        <main className="main">
-          <div className="main__wrapper">{children}</div>
-        </main>
+        <main className="main">{children}</main>
         <footer className="footer">
           <div className="footer__text">
             Web news project | Made by{" "}

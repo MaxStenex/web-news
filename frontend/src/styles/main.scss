@@ -47,6 +47,23 @@ body {
   }
 }
 
+.secondary-btn {
+  @extend .default-btn;
+
+  border: 1px solid $secondaryColor;
+  color: $primaryColor;
+
+  &:hover:not([disabled]) {
+    color: $secondaryColor;
+    border-color: $secondaryColor;
+  }
+
+  &:disabled {
+    background-color: lighten($secondaryColor, 10);
+    color: lighten($secondaryColor, 15);
+  }
+}
+
 .error-text {
   font-size: 14px;
   color: red;

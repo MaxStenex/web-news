@@ -14,7 +14,7 @@ const headerLinks: Array<INavLink> = [
   },
   {
     text: "News",
-    path: "/news",
+    path: "/news?page=1",
   },
 ];
 

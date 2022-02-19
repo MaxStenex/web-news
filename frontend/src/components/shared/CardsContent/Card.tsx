@@ -36,7 +36,7 @@ export const Card: React.FC<Props> = ({
         <h3 className="post-card__title">{title}</h3>
         <div className="post-card__category">Category : {category}</div>
         <div className="post-card__text">{text}</div>
-        <Link to={`/posts/${id}`} className="primary-btn post-card__read-more-btn">
+        <Link to={`/news/${id}`} className="primary-btn post-card__read-more-btn">
           Read more
         </Link>
       </div>

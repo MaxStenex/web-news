@@ -1,7 +1,14 @@
 import "./styles/main.scss";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CreatePostPage, HomePage, LoginPage, NewsPage, RegistrationPage } from "./pages";
+import {
+  CreatePostPage,
+  HomePage,
+  LoginPage,
+  NewsPage,
+  PostPage,
+  RegistrationPage,
+} from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { PrivateRoute } from "./router";
 
@@ -26,6 +33,7 @@ const App = () => {
             element={<PrivateRoute component={<CreatePostPage />} />}
           />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:id" element={<PostPage />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
