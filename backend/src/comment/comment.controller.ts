@@ -13,10 +13,10 @@ export class CommentController {
     @Param("postId") postId: string,
     @Body() createCommentDto: CreateCommentDto,
   ) {
-    return this.commentService.createNewComment({
-      ...createCommentDto,
-      postId: parseInt(postId),
-    });
+    return this.commentService.createNewComment(
+      createCommentDto,
+      parseInt(postId),
+    );
   }
 
   @Get("/:postId")

@@ -1,7 +1,6 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { validate } from "class-validator";
-import { UserService } from "src/user/user.service";
 import { Repository } from "typeorm";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { Post, PostCategory } from "./post.entity";
@@ -10,25 +9,21 @@ import { Post, PostCategory } from "./post.entity";
 export class PostService {
   constructor(
     @InjectRepository(Post) private readonly postRepository: Repository<Post>,
-    private userService: UserService,
   ) {}
 
   async createNewPost(createPostDto: CreatePostDto, userId: number) {
     try {
       await validate(createPostDto);
 
-      const creator = await this.userService.findUserByField({
-        field: "id",
-        value: userId,
-      });
-
-      if (!userId || !creator) {
+      if (!userId) {
         return new HttpException("User not found", 400);
       }
 
       const post = this.postRepository.create({
         ...createPostDto,
-        creator,
+        creator: {
+          id: userId,
+        },
       });
 
       await this.postRepository.save(post);

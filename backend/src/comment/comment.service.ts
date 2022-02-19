@@ -12,17 +12,13 @@ export class CommentService {
     private readonly commentRepository: Repository<Comment>,
   ) {}
 
-  async createNewComment({
-    postId,
-    text,
-  }: CreateCommentDto & { postId: number }) {
+  async createNewComment(createCommentDto: CreateCommentDto, postId: number) {
     try {
-      const createCommentDto = { text };
       await validate(createCommentDto);
 
       const comment = this.commentRepository.create({
         post: { id: postId },
-        text,
+        text: createCommentDto.text,
       });
 
       await this.commentRepository.save(comment);
