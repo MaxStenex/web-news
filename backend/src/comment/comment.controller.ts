@@ -1,5 +1,13 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Param,
+  Post,
+  Request,
+  UseGuards,
+} from "@nestjs/common";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
+import { RequestUserInfoType } from "src/auth/jwt.strategy";
 import { CommentService } from "./comment.service";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 
@@ -12,15 +20,14 @@ export class CommentController {
   async createComment(
     @Param("postId") postId: string,
     @Body() createCommentDto: CreateCommentDto,
+    @Request() req,
   ) {
+    const userId = (req.user as RequestUserInfoType).id;
+
     return this.commentService.createNewComment(
       createCommentDto,
       parseInt(postId),
+      userId,
     );
-  }
-
-  @Get("/:postId")
-  async findAll(@Param("postId") postId: string) {
-    return this.commentService.findPostComments(parseInt(postId));
   }
 }

@@ -12,35 +12,23 @@ export class CommentService {
     private readonly commentRepository: Repository<Comment>,
   ) {}
 
-  async createNewComment(createCommentDto: CreateCommentDto, postId: number) {
+  async createNewComment(
+    createCommentDto: CreateCommentDto,
+    postId: number,
+    userId: number,
+  ) {
     try {
       await validate(createCommentDto);
 
       const comment = this.commentRepository.create({
         post: { id: postId },
+        creator: { id: userId },
         text: createCommentDto.text,
       });
 
       await this.commentRepository.save(comment);
 
       return comment;
-    } catch (error) {
-      return new HttpException("Something goes wrong", 500);
-    }
-  }
-
-  async findPostComments(postId: number) {
-    try {
-      const comments = await this.commentRepository.find({
-        where: {
-          post: {
-            id: postId,
-          },
-        },
-        relations: ["post"],
-      });
-
-      return comments;
     } catch (error) {
       return new HttpException("Something goes wrong", 500);
     }

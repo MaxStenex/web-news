@@ -1,4 +1,5 @@
 import { IsEmail, MaxLength, MinLength } from "class-validator";
+import { Comment } from "src/comment/comment.entity";
 import { Post } from "src/post/post.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -23,4 +24,7 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.creator)
   posts: Post[];
+
+  @OneToMany(() => Comment, (comment) => comment.creator)
+  comments: Comment[];
 }

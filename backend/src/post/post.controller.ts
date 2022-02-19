@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Query,
   Request,
@@ -35,5 +36,10 @@ export class PostController {
     const skip = parseInt(query.skip);
 
     return this.postService.find({ take, skip });
+  }
+
+  @Get("/:id")
+  async findPostById(@Param("id") id: string) {
+    return this.postService.findById(parseInt(id));
   }
 }

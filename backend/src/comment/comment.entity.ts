@@ -1,5 +1,6 @@
 import { MaxLength, MinLength } from "class-validator";
 import { Post } from "src/post/post.entity";
+import { User } from "src/user/user.entity";
 import {
   Column,
   CreateDateColumn,
@@ -23,4 +24,7 @@ export class Comment {
 
   @ManyToOne(() => Post, (post) => post.comments)
   post: Post;
+
+  @ManyToOne(() => User, (user) => user.comments)
+  creator: User;
 }

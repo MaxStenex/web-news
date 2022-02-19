@@ -56,4 +56,15 @@ export class PostService {
       return { posts, totalCount };
     } catch (error) {}
   }
+
+  async findById(id: number) {
+    try {
+      const post = await this.postRepository.findOne({
+        relations: ["creator", "comments", "comments.creator"],
+        where: { id },
+      });
+
+      return post;
+    } catch (error) {}
+  }
 }
