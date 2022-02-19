@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getCategories, getPosts, IGetPosts } from "../api/post";
+import { getCategories, getPostById, getPosts, IGetPosts } from "../api/post";
 
 export const useCategoriesQuery = () => useQuery("postCategories", getCategories);
 
@@ -11,4 +11,8 @@ export const usePostsQuery = ({ take, skip }: IGetPosts) => {
   return useQuery(["posts", { take, skip }], () => getPosts({ take, skip }), {
     keepPreviousData: true,
   });
+};
+
+export const usePostQuery = (postId: number) => {
+  return useQuery(["post", postId], () => getPostById(postId));
 };

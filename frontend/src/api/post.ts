@@ -35,3 +35,18 @@ export const getPosts = async ({ take, skip }: IGetPosts) => {
   const res = await instance.get(url);
   return res.data;
 };
+
+export const getPostById = async (id: number) => {
+  const res = await instance.get(`/posts/${id}`);
+  return res.data;
+};
+
+interface ILeaveCommentOnPost {
+  postId: number;
+  text: string;
+}
+
+export const leaveCommentOnPost = async ({ postId, text }: ILeaveCommentOnPost) => {
+  const res = await instance.post(`/comment/${postId}`, { text });
+  return res.data;
+};

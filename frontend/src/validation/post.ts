@@ -11,3 +11,7 @@ export const createPostSchema = Yup.object().shape({
     .required("Field is required"),
   category: Yup.string().required("Field is required"),
 });
+
+export const createCommentSchema = Yup.object().shape({
+  text: Yup.string().min(2, "Minimal length is 2").max(100, "Maximum length is 100"),
+});
