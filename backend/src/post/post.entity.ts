@@ -6,7 +6,9 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  OneToMany,
 } from "typeorm";
+import { Comment } from "src/comment/comment.entity";
 
 export enum PostCategory {
   JavaScript = "javascript",
@@ -43,4 +45,7 @@ export class Post {
 
   @ManyToOne(() => User, (user) => user.posts)
   creator: User;
+
+  @OneToMany(() => Comment, (comment) => comment.post)
+  comments: Comment[];
 }
